@@ -4,7 +4,6 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
-import androidx.paging.filter
 import androidx.paging.insertSeparators
 import androidx.paging.map
 import com.liam.pagingsample.domain.RepoRepository
@@ -23,9 +22,13 @@ class MainViewModel @ViewModelInject constructor(
 
                 val beforeName = before?.repo?.name
                 val afterName = after?.repo?.name
-                if (beforeName?.first() == afterName?.first())
-                    UiModel.Separator(beforeName?.first().toString())
-                else
+
+                if (beforeName != null && afterName != null) {
+                    if (beforeName.first() == afterName.first())
+                        UiModel.Separator(beforeName.first().toString())
+                    else
+                        null
+                } else
                     null
             }
         }

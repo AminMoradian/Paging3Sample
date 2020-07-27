@@ -2,7 +2,6 @@ package com.liam.pagingsample.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.view.ViewParent
 import androidx.core.view.isVisible
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
@@ -25,9 +24,9 @@ class RepoLoadStateAdapter(
         return RepoLoadStateViewHolder(parent, retry)
     }
 
-    inner class RepoLoadStateViewHolder(
+    class RepoLoadStateViewHolder(
         parent: ViewGroup,
-        retry: () -> Unit
+        private val retry: () -> Unit
     ) : RecyclerView.ViewHolder(
         LayoutInflater.from(parent.context).inflate(
             R.layout.item_load_state, parent, false
